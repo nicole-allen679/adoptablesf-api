@@ -14,14 +14,14 @@ exports.getAllPets = (req, res) => {
       })
       res.send(allPets)
     })
-    .catch(err => res.send('Error getting Pets', +err.message))
+    .catch((err) => res.send('Error getting Pets', +err.message))
 }
 
-exports.newPet = (req,res) => {
-    const db = connectToFB()
-    const newData = req.body
-    db.collection('pets')
+exports.newPet = (req, res) => {
+  const db = connectToFB()
+  const newData = req.body
+  db.collection('pets')
     .add(newData)
-    .then(() => this.getAllPets(req,res))
-    .catch(err => res.send('Error creating new pet', +err.message))
+    .then(() => this.getAllPets(req, res))
+    .catch((err) => res.send('Error creating new pet', +err.message))
 }
