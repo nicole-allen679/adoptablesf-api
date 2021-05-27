@@ -25,3 +25,12 @@ exports.newPet = (req, res) => {
     .then(() => this.getAllPets(req, res))
     .catch((err) => res.send('Error creating new pet', +err.message))
 }
+
+exports.newUser = (req, res) => {
+  const db = connectToFB()
+  const user = req.body
+  db.collection('users')
+    .add(user)
+    .then(() => res.send('user created successfully'))
+    .catch((err) => res.send('error creating user', +err.message))
+}
