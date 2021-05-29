@@ -34,3 +34,19 @@ exports.newUser = (req, res) => {
     .then(() => res.send('user created successfully'))
     .catch((err) => res.send('error creating user', +err.message))
 }
+
+exports.updatePet = (req, res) => {
+  const db = connectToFB()
+  const updateData = req.body
+  db.collection('pets').doc(req.params.petId).update(updateData)
+  .then(() => this.getAllPets(req, res))
+  .catch(err => res.send('error updating', +err.message))
+}
+
+exports.deletePet = (req, res) => {
+  const db = connectToFB()
+  const { petId } = req.params
+  db.collection('pets').doc(petId).delete()
+  .then(() => this.getAllPets(req, res))
+  .catch(err => res.send('error deleting', +err.message))
+}
