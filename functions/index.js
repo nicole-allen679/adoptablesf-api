@@ -10,6 +10,7 @@ app.use(cors())
 app.get('/pets', getAllPets)
 app.post('/pets', newPet)
 app.post('/users', newUser)
+app.get('/users/:userId', signIn)
 app.patch('/pets/:petId', updatePet)
 app.delete('/pets/:petId', deletePet)
 
