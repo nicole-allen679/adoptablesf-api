@@ -35,17 +35,6 @@ exports.newUser = (req, res) => {
     .catch((err) => res.send('error creating user', +err.message))
 }
 
-exports.getSignIn = (req, res) => {
-  const db = connectToFB()
-  const {userId} = req.params
-  db.collection('users').doc(useId).get()
-  .then(doc => {
-    let user = doc.data()
-    user.id = doc.id
-    res.send(user)
-  })
-  .catch(err => res.send('error signing in' +err.message))
-}
 
 exports.updatePet = (req, res) => {
   const db = connectToFB()
