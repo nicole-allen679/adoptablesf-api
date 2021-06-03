@@ -17,6 +17,15 @@ exports.getAllPets = (req, res) => {
     .catch((err) => res.send('Error getting Pets', +err.message))
 }
 
+exports.getSinglePet = (req, res) => {
+  const db = connectToFB()
+  const { petId } = req.params
+  db.collection('pets')
+  .doc(petId)
+  .get()
+  .then(singlePet => res.send(singlePet.data()))
+}
+
 exports.newPet = (req, res) => {
   const db = connectToFB()
   const newData = req.body
